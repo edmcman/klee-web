@@ -1,3 +1,4 @@
+import shlex
 from worker.processor.base import BaseProcessor
 
 
@@ -46,7 +47,7 @@ class KleeRunProcessor(BaseProcessor):
 
         options = self.args.get('options')
         if options:
-            klee_command += [options]
+            klee_command += shlex.split(options)
 
         return klee_command + [self.runner.DOCKER_OBJECT_FILE] + arg_list
 
